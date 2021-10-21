@@ -6,7 +6,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $sd=$_POST['sender'];
     $rc=$_POST['receiver'];
     $am=$_POST['amount'];
-    echo $sd;
+
     $sql1="INSERT INTO `transaction` (`ID`, `Sender`, `Receiver`, `Amount`, `Dt`) VALUES (NULL,'$sd', '$rc', '$am', current_timestamp());";
     $r1=mysqli_query($conn,$sql1);
   
@@ -28,6 +28,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $r5=mysqli_query($conn,$sql5);
 }
 ?>
+<div class="container my-4">
+    <?php
+    if($err==false){
+        echo '<div class="alert alert-success" role="alert">
+        <strong>Success</strong>Transaction Successfull!
+      </div>';
+    }
+    ?>
 <div class="container my-4">
     <h2>
         <center>Make Transaction</center>
