@@ -1,7 +1,7 @@
 <?php require "partials/_nav.php" ?>
 <?php require "partials/_dbconnect.php" ?>
 <?php
-$sd=$rc=$am="";
+$sd=$rc=$am=$err="";
 if($_SERVER['REQUEST_METHOD']=='POST'){
     $sd=$_POST['sender'];
     $rc=$_POST['receiver'];
@@ -26,16 +26,14 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $r4=mysqli_query($conn,$sql4);
     $sql5="UPDATE `user` SET `Balance` = '$ra' WHERE `user`.`Name` = '$rc'";
     $r5=mysqli_query($conn,$sql5);
-}
-?>
-<div class="container my-4">
-    <?php
+    $err=false;
     if($err==false){
         echo '<div class="alert alert-success" role="alert">
         <strong>Success</strong>Transaction Successfull!
       </div>';
     }
-    ?>
+}
+?>
 <div class="container my-4">
     <h2>
         <center>Make Transaction</center>
